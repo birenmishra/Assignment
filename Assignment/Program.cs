@@ -10,20 +10,22 @@ namespace Assignment
     {
         static void Main(string[] args)
         {
-            //CountChar cc = new CountChar();
-            //cc.TakeInput();
-            //cc.countChar();
-            Console.WriteLine("************");
-            //RemoveDuplicates rd = new RemoveDuplicates();
-            //rd.RemoveDuplicatesString();
-            //rd.RemoveDuplicatesStringUsingLinq();
+            CountChar countChar = new CountChar();
+            countChar.TakeInput();
+            countChar.countChar();
 
-            //ReverseString rs = new ReverseString();
-            //rs.ReverseStringUsingSplit();
-            //rs.ReverseStringWithOutSplit();
-            NestedNode nn = new NestedNode();
-            nn.FindNodes();
-            Console.ReadKey();
+            //RemoveDuplicates removeDuplicates = new RemoveDuplicates();
+            //removeDuplicates.RemoveDuplicatesString();
+            //removeDuplicates.RemoveDuplicatesStringUsingLinq();
+
+            //ReverseString reverseString = new ReverseString();
+            //reverseString.ReverseStringUsingSplit();
+            //reverseString.ReverseStringWithOutSplit();
+
+            //NestedNode nestedNode = new NestedNode();
+            //nestedNode.FindKeysFromJsonString();
+
+            Console.ReadLine();
         }
     }
 }

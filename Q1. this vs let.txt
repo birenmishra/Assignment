@@ -1,0 +1,97 @@
+Q1. Difference between "this" and "let" keyword
+
+
+"this" keyword:
+
+The this keyword’s value has nothing to do with the function itself, how the function is called determines the this value.
+
+1. Window Object, global scope : 
+
+// define a function
+var TestFunction = function () {
+  console.log(this);      
+};
+
+// call it
+TestFunction();   ---------------> this refers to window object as it called by the window object
+
+By default, this should always be the window Object, which refers to the root – the global scope. So as the TestFunction invoked by the window, the this value to be window Object.
+
+
+2. Object literals :
+
+// create an object
+var myObject = {};
+
+myObject.TestMethod = function () {
+  console.log(this);
+};
+
+// call method
+myObject.TestMethod();
+
+In the above case, "this" will refer to the Object that called it (myObject).
+
+
+3. Constructors
+
+var myConstructor = function () {
+    this.TestMethod = function () {
+        console.log(this);
+    };
+};
+
+var a = new myConstructor();
+a.TestMethod();
+
+Here "this" value refers to the constructor object (myConstructor).
+
+4. Dynamic this :
+
+var element = document.querySelector('.elem');
+
+var TestMethod = function () {
+  console.log(this);
+};
+
+element.addEventListener('click', TestMethod, false); // ----------> when clicked, `this` will become the element
+
+TestMethod(); //---> if we just invoke the function, `this` becomes the window object
+
+------------------------------------------------------------------------------------------
+
+"let" keyword: 
+
+"let" allows to declare variables that are limited in scope to the block, statement, or expression on which it is used
+
+example:1 
+
+function letTest() {
+  let x = 1;
+  if (true) {
+    let x = 2;  // different variable
+    console.log(x);  // 2
+  }
+  console.log(x);  // 1
+}
+
+
+example:2 
+
+let i = 5;
+for (let i = 0; i < 10; i++) {
+  // some statements
+}
+// Here i is 5
+In the above case (e.g:2)let, the variable declared in the loop does not redeclare the variable outside the loop.
+
+
+-->let does not create any property on the global object.
+-->When used inside a block, let limits the variable's scope to that block
+--> let can not be used dynamically throughout the class or function. It is specific to a block. where as this can be used dynamically.
+-->let keyword is not fully supported in Internet Explorer 11 or earlier.
+
+
+
+
+

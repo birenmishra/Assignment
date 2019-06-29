@@ -3,35 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace Assignment
 {
     class NestedNode
     {
-        public void FindNodes()
+        public void FindKeysFromJsonString()
         {
-            List<string> nodes = new List<string>();
-            string input = "{  a: 5, b: { c: { d: 10 } }}";
-            var splittedByComma = input.Split(',');
-            foreach (string splt in splittedByComma)
-            {
-                RecursiveMethod(nodes, splt);
-            }
-            nodes.ForEach(x => Console.WriteLine(x));
+            string jsonString = "{  a: 5, b: { c: { d: 10 } }}";
+
+            JObject jsonObj = JObject.Parse(jsonString);
+
+            RecursiveMethod(jsonObj);
         }
 
-        public void RecursiveMethod(List<string> nodes, string splt)
+        public void RecursiveMethod(JObject parent)
         {
-            var value = splt.Split(':');
-            if (value[0].Contains(":"))
+            Dictionary < string, string> dictObj = new Dictionary<string, string>();
+            foreach (JObject child in parent.Children())
             {
-                nodes.Add(value[0].Replace("{ ", "").Replace(" ", ""));
-                RecursiveMethod(nodes, value[0]);
+                if (child.HasValues)
+                {
+                     dictObj = parent.ToObject<Dictionary<string, string>>();
+                    RecursiveMethod(child);
+                }
             }
-            else
+            Console.WriteLine("Output: ");
+            foreach (var key in dictObj.Keys)
             {
-                nodes.Add(value[0].Replace("{ ", "").Replace(" ", ""));
+                Console.WriteLine(key);
             }
         }
+
     }
 }

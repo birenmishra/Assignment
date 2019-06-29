@@ -28,7 +28,6 @@ namespace Assignment
             {
                 throw new Exception(ex.Message);
             }
-            //Console.WriteLine("Please enter the strings to count char -");
             
         }
         public void countChar()

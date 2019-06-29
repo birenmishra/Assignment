@@ -11,7 +11,7 @@ namespace Assignment
         public void ReverseStringUsingSplit()
         {
             string input = "abc dev inf iop";
-            StringBuilder sb = new StringBuilder();// output = "";
+            StringBuilder sb = new StringBuilder();
             foreach (string str in input.Split(' '))
             {
                 sb.Append(String.Join("",str.Reverse().ToArray()));
@@ -50,7 +50,6 @@ namespace Assignment
                 
             }
             sb.Append(" ");
-            //return sb;
         }
     }
 }
